@@ -1,0 +1,9 @@
+{
+    "name"           : "milkyway-multimedia/ss-focus-area",
+    "version"        : "0.1.0",
+    "private"        : true,
+    "dependencies"   : {},
+    "devDependencies": {
+        "jcrop"        : "~0.9"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name"             : "milkyway-multimedia/ss-focus-area",
+    "description"      : "New form field and DB field for selecting an area of an image/page",
+    "type"             : "silverstripe-module",
+    "keywords"         : ["forms", "focus", "silverstripe"],
+    "license"          : "MIT",
+    "require"          : {
+        "silverstripe/framework": "~3.1"
+    },
+    "extra"            : {
+        "installer-name": "focus-area"
+    },
+    "config"           : {
+        "process-timeout": 600
+    }
+}
