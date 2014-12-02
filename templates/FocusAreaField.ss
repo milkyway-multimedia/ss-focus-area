@@ -1,5 +1,5 @@
-<div class="focus-area-field">
-    <div class="focus-area-field--objectHolder">
+<div $AttributesHTML>
+    <div class="focusarea--objectHolder">
         $ObjectField
     </div>
     $PointFields

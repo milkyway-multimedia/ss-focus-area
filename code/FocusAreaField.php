@@ -4,6 +4,7 @@ use \Milkyway\SS\FocusArea\DBField;
 
 class FocusAreaField extends FormField {
 	public $object;
+	public $link;
 
 	protected $children = [];
 
@@ -11,7 +12,7 @@ class FocusAreaField extends FormField {
 		$this->object = $object;
 
 		foreach(DBField::config()->composite_db as $point => $type) {
-			$this->children[$point] = \HiddenField::create($name . '[' . $point . ']')->addExtraClass('focus-area-field-point focus-area-field-point--' . $point)->setForm($form);
+			$this->children[$point] = \HiddenField::create($name . '[' . $point . ']')->addExtraClass('focusarea-point focusarea-point--' . $point)->setForm($form);
 		}
 
 		parent::__construct($name, $title, $value, $form);
@@ -49,26 +50,6 @@ class FocusAreaField extends FormField {
 		return $this->getHtmlForObjectField($object);
 	}
 
-	protected function getHtmlForObjectField($object = null) {
-		if(!$object)
-			return '<div class="focus-area-field--default"></div>';
-
-		if($object instanceof \Milkyway\SS\FocusArea\Contracts\HasPreviewForFocusArea)
-			return '<div class="focus-area-field--page">' . $object->previewHtmlForFocusArea() . '</div>';
-		elseif($object instanceof \Milkyway\SS\FocusArea\Contracts\HasPreviewForFocusArea_Link)
-			return '<iframe class="focus-area-field--frame" src="' . $object->previewLinkForFocusArea() . '"></iframe>';
-		elseif($object instanceof CMSPreviewable)
-			return '<iframe class="focus-area-field--frame" src="' . $object->Link() . '"></iframe>';
-		elseif($object instanceof Image) {
-			if($object->hasMethod('CroppedFocusedImage'))
-				return '<img class="focus-area-field--image" src="' . $object->CroppedFocusedImage(300,240) . '" />';
-			else
-				return '<img class="focus-area-field--image" src="' . $object->CroppedImage(300,240) . '" />';
-		}
-
-		return '<div class="focus-area-field--default"></div>';
-	}
-
 	public function setForm($form) {
 		foreach($this->children as $field)
 			$field->setForm($form);
@@ -78,10 +59,20 @@ class FocusAreaField extends FormField {
 
 	public function setObject($object) {
 		$this->object = $object;
+		return $this;
 	}
 
 	public function getObject() {
 		return $this->object;
+	}
+
+	public function setLink($link) {
+		$this->link = $link;
+		return $this;
+	}
+
+	public function getLink() {
+		return $this->link;
 	}
 
 	public function setPoint($point, $value = null) {
@@ -121,5 +112,28 @@ class FocusAreaField extends FormField {
 				$record->{$this->name}->$point = $field->Value();
 			}
 		}
+	}
+
+	protected function getHtmlForObjectField($object = null) {
+		if($this->link)
+			return '<iframe class="focusarea--frame" src="' . $this->link . '"></iframe>';
+		elseif(!$object)
+			return '<div class="focusarea--default"></div>';
+		elseif($object instanceof \Milkyway\SS\FocusArea\Contracts\HasPreviewForFocusArea_Object)
+			return $this->getHtmlForObjectField($object->previewObjectForFocusArea());
+		elseif($object instanceof \Milkyway\SS\FocusArea\Contracts\HasPreviewForFocusArea)
+			return '<div class="focusarea--page">' . $object->previewHtmlForFocusArea() . '</div>';
+		elseif($object instanceof \Milkyway\SS\FocusArea\Contracts\HasPreviewForFocusArea_Link)
+			return '<iframe class="focusarea--frame" src="' . $object->previewLinkForFocusArea() . '"></iframe>';
+		elseif($object instanceof CMSPreviewable)
+			return '<iframe class="focusarea--frame" src="' . $object->Link() . '"></iframe>';
+		elseif($object instanceof Image) {
+			if($object->hasMethod('CroppedFocusedImage'))
+				return '<img class="focusarea--image" src="' . $object->CroppedFocusedImage(360,225) . '" />';
+			else
+				return '<img class="focusarea--image" src="' . $object->CroppedImage(360,225) . '" />';
+		}
+
+		return '<div class="focusarea--default"></div>';
 	}
 }

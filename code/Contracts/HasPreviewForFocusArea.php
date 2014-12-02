@@ -17,3 +17,7 @@ interface HasPreviewForFocusArea {
 interface HasPreviewForFocusArea_Link {
 	public function previewLinkForFocusArea();
 }
+
+interface HasPreviewForFocusArea_Object {
+	public function previewObjectForFocusArea();
+}
