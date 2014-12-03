@@ -114,6 +114,10 @@ class FocusAreaField extends FormField {
 		}
 	}
 
+	public function getAttributes() {
+		return array_diff_key(parent::getAttributes(), ['value' => null]);
+	}
+
 	protected function getHtmlForObjectField($object = null) {
 		if($this->link)
 			return '<iframe class="focusarea--frame" src="' . $this->link . '"></iframe>';
