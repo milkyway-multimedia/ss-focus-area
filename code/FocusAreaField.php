@@ -23,8 +23,8 @@ class FocusAreaField extends FormField {
 		Requirements::javascript(FRAMEWORK_DIR . '/thirdparty/jquery/jquery.js');
 		Requirements::javascript(FRAMEWORK_DIR . '/thirdparty/jquery-entwine/dist/jquery.entwine-dist.js');
 
-		Requirements::javascript(SS_FOCUS_AREA_DIR . '/thirdparty/jcrop/js/jquery.jcrop.js');
-		Requirements::css(SS_FOCUS_AREA_DIR . '/thirdparty/jcrop/css/jquery.jcrop.min.css');
+		Requirements::javascript(SS_FOCUS_AREA_DIR . '/thirdparty/jcrop/js/jquery.Jcrop.js');
+		Requirements::css(SS_FOCUS_AREA_DIR . '/thirdparty/jcrop/css/jquery.Jcrop.min.css');
 
 		Requirements::javascript(SS_FOCUS_AREA_DIR . '/javascript/mwm.focus-area.js');
 		Requirements::css(SS_FOCUS_AREA_DIR . '/css/mwm.focus-area.css');

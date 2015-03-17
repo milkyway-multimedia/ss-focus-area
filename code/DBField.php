@@ -109,6 +109,16 @@ class DBField extends \DBField implements \CompositeDBField
 		}
 	}
 
+	public function addToQuery(&$query) {
+		parent::addToQuery($query);
+
+		$fields = $this->compositeDatabaseFields();
+
+		foreach ($fields as $name => $type) {
+			$query->selectField($this->name . $name);
+		}
+	}
+
 	public function scaffoldFormField($title = null)
 	{
 		return \FocusAreaField::create($this->name);
