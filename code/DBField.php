@@ -187,4 +187,4 @@ class DBField extends \DBField implements \CompositeDBField
 
 		return parent::__call($method, $arguments);
 	}
-} 
+}
