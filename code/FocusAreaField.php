@@ -17,9 +17,9 @@ class FocusAreaField extends FormField {
 
 		parent::__construct($name, $title, $value, $form);
 	}
-	
+
 	public function Field($properties = array()) {
-	
+
 		Requirements::javascript(FRAMEWORK_DIR . '/thirdparty/jquery/jquery.js');
 		Requirements::javascript(FRAMEWORK_DIR . '/thirdparty/jquery-entwine/dist/jquery.entwine-dist.js');
 
@@ -28,7 +28,7 @@ class FocusAreaField extends FormField {
 
 		Requirements::javascript(SS_FOCUS_AREA_DIR . '/javascript/mwm.focus-area.js');
 		Requirements::css(SS_FOCUS_AREA_DIR . '/css/mwm.focus-area.css');
-		
+
 		return parent::Field($properties);
 	}
 
